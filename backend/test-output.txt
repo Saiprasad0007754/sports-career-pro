@@ -1,0 +1,10 @@
+grok-2: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-2"}
+grok-2-1212: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-2-1212"}
+grok-2-latest: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-2-latest"}
+grok-2-mini: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-2-mini"}
+grok-2-mini-1212: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-2-mini-1212"}
+grok-beta: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-beta"}
+grok-3: 403 - {"code":"The caller does not have permission to execute the specified operation","error":"Your newly
+grok-3-beta: 403 - {"code":"The caller does not have permission to execute the specified operation","error":"Your newly
+grok-4: 403 - {"code":"The caller does not have permission to execute the specified operation","error":"Your newly
+grok-4.20: 403 - {"code":"The caller does not have permission to execute the specified operation","error":"Your newly

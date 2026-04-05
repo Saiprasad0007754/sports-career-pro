@@ -1,0 +1,5 @@
+grok: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok"}
+grok-fast: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-fast"}
+grok-core: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-core"}
+grok-vision-beta: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-vision-beta"}
+grok-2-vision: 400 - {"code":"Client specified an invalid argument","error":"Model not found: grok-2-vision"}

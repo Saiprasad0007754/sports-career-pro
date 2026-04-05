@@ -1,0 +1,27 @@
+# Visual Studio Code
+.vscode/
+
+# Frontend (React)
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.env.local
+
+# Backend (Spring Boot Java)
+backend/target/
+backend/bin/
+backend/.settings/
+backend/.project
+backend/.classpath
+backend/*.log
+backend/jdk17/
+
+# Chatbot (Python)
+flask-chatbot/__pycache__/
+flask-chatbot/venv/
+flask-chatbot/env/
+flask-chatbot/.pytest_cache/
+
+# General
+.DS_Store
+*.log
