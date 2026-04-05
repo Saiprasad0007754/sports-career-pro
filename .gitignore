@@ -25,3 +25,4 @@ flask-chatbot/.pytest_cache/
 # General
 .DS_Store
 *.log
+flask-chatbot/.env
