@@ -39,7 +39,7 @@ public class GuidanceReport {
     private List<CareerRecommendation> recommendedCareers;
     private List<Skill> requiredSkills;
     private List<TrainingPath> trainingRoadmap;
-    private List<TrainingCenterDto> trainingCenters;
+    private List<TrainingCenter> trainingCenters;
     private List<DietPlan> dietPlan;
 
     // --- Growth path text ---

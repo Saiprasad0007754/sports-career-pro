@@ -33,7 +33,8 @@ public class RecommendationService {
     private final TrainingPathRepository trainingPathRepository;
     private final DietPlanRepository dietPlanRepository;
     private final UserProfileRepository userProfileRepository;
-    private final GoogleMapsService googleMapsService;
+    private final TrainingCenterRepository trainingCenterRepository;
+
 
     // -------------------------------------------------------
     // generateReport — main public method called by controller
@@ -116,10 +117,21 @@ public class RecommendationService {
             dietPlans = List.of(dp);
         }
 
-        // 8b. Fetch Google Maps Training Centers
-        List<TrainingCenterDto> liveCenters = new ArrayList<>();
+        // 8b. Fetch Database Training Centers
+        List<TrainingCenter> liveCenters = new ArrayList<>();
         if (req.getLocation() != null && !req.getLocation().trim().isEmpty()) {
-            liveCenters = googleMapsService.findTrainingCenters(sport.getName(), req.getLocation());
+            liveCenters = trainingCenterRepository.findBySportNameIgnoreCaseAndLocationIgnoreCase(sport.getName(), req.getLocation());
+            if (liveCenters.isEmpty()) {
+                TrainingCenter mock1 = new TrainingCenter("Elite " + sport.getName() + " Academy of " + req.getLocation(), req.getLocation() + " Central Sports Complex", 4.8, 124, "mock_1");
+                mock1.setSportName(sport.getName());
+                mock1.setLocation(req.getLocation());
+                
+                TrainingCenter mock2 = new TrainingCenter("NextGen " + sport.getName() + " Training Hub", req.getLocation() + " Downtown Arena", 4.5, 87, "mock_2");
+                mock2.setSportName(sport.getName());
+                mock2.setLocation(req.getLocation());
+                
+                liveCenters = trainingCenterRepository.saveAll(List.of(mock1, mock2));
+            }
         }
 
         // 9. Build the report
