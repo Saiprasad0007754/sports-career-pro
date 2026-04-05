@@ -1,6 +1,6 @@
 // src/components/auth/AuthPage.jsx
-import React, { useState } from 'react';
-import { loginUser, registerUser } from '../../services/api';
+import React, { useState, useEffect } from 'react';
+import { loginUser, registerUser, getSupportedSports } from '../../services/api';
 import './AuthPage.css';
 
 export default function AuthPage({ onLogin }) {
@@ -8,6 +8,11 @@ export default function AuthPage({ onLogin }) {
   const [form, setForm]       = useState({ name: '', email: '', password: '', confirm: '' });
   const [error, setError]     = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Ping backend on mount to wake up the Render free tier instance
+  useEffect(() => {
+    getSupportedSports().catch(() => {}); // silent catch
+  }, []);
 
   const handleChange = (e) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -213,7 +218,7 @@ export default function AuthPage({ onLogin }) {
 
             <button type="submit" className="auth-submit" disabled={loading}>
               {loading
-                ? <span className="auth-spinner">⏳ Please wait...</span>
+                ? <span className="auth-spinner">⏳ Please wait (Backend waking up, may take ~50s)...</span>
                 : mode === 'login' ? 'Sign In →' : 'Create Account →'
               }
             </button>

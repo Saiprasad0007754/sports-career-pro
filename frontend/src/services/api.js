@@ -4,7 +4,7 @@ import axios from 'axios';
 const api = axios.create({
   // Use deployed backend URL if available, otherwise default to local proxy /api
   baseURL: process.env.REACT_APP_BACKEND_URL || '/api',
-  timeout: 30000,
+  timeout: 100000, // Increased to 100 seconds for slow free-tier cloud cold starts
   headers: { 'Content-Type': 'application/json' },
 });
 
