@@ -7,6 +7,18 @@ CREATE DATABASE IF NOT EXISTS sports_career_pro_db;
 USE sports_career_pro_db;
 
 -- ---------------------------------------------------------------
+-- TABLE: users
+-- Stores registered user credentials
+-- ---------------------------------------------------------------
+CREATE TABLE users (
+    id            BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name          VARCHAR(150) NOT NULL,
+    email         VARCHAR(150) NOT NULL UNIQUE,
+    password      VARCHAR(255) NOT NULL,
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ---------------------------------------------------------------
 -- TABLE: sports
 -- Master list of sports supported by the system
 -- ---------------------------------------------------------------
