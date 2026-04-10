@@ -20,6 +20,8 @@ public class UserProfileRequest {
 
     private String name;
 
+    private String email;
+
     @NotBlank(message = "Sport interest is required")
     private String sportInterest;
 

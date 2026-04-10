@@ -339,7 +339,13 @@ public class RecommendationService {
     // Save UserProfile to DB
     // -------------------------------------------------------
     private UserProfile saveProfile(UserProfileRequest req, double bmi, int fitnessScore) {
-        UserProfile p = new UserProfile();
+        UserProfile p;
+        if (req.getEmail() != null && !req.getEmail().trim().isEmpty()) {
+            p = userProfileRepository.findTopByEmailOrderByIdDesc(req.getEmail()).orElse(new UserProfile());
+            p.setEmail(req.getEmail());
+        } else {
+            p = new UserProfile();
+        }
         p.setName(req.getName());
         p.setSportInterest(req.getSportInterest());
         p.setLocation(req.getLocation());
@@ -352,5 +358,27 @@ public class RecommendationService {
         p.setBmi(Math.round(bmi * 100.0) / 100.0);
         p.setFitnessScore(fitnessScore);
         return userProfileRepository.save(p);
+    }
+
+    // -------------------------------------------------------
+    // Fetch Report by Email
+    // -------------------------------------------------------
+    public GuidanceReport getReportByEmail(String email) {
+        UserProfile p = userProfileRepository.findTopByEmailOrderByIdDesc(email)
+            .orElseThrow(() -> new RuntimeException("No profile found for email: " + email));
+
+        UserProfileRequest req = new UserProfileRequest();
+        req.setName(p.getName());
+        req.setEmail(p.getEmail());
+        req.setSportInterest(p.getSportInterest());
+        req.setLocation(p.getLocation());
+        req.setAge(p.getAge());
+        req.setWeightKg(p.getWeightKg());
+        req.setHeightCm(p.getHeightCm());
+        req.setFitnessLevel(p.getFitnessLevel());
+        req.setCareerLevel(p.getCareerLevel());
+        req.setPriority(p.getPriority());
+
+        return generateReport(req);
     }
 }

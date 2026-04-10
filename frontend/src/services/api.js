@@ -33,6 +33,11 @@ export const getSupportedSports = async () => {
   return response.data;
 };
 
+export const getGuidanceReport = async (email) => {
+  const response = await api.get('/guidance/report', { params: { email } });
+  return response.data;
+};
+
 // ── Auth ─────────────────────────────────────────────────
 export const loginUser = async (credentials) => {
   const response = await api.post('/auth/login', credentials);

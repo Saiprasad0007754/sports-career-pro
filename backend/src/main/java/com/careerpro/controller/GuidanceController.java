@@ -61,4 +61,18 @@ public class GuidanceController {
             )
         );
     }
+
+    /**
+     * GET /api/guidance/report?email={email}
+     * Retrieves an existing guidance report for a user by their email.
+     */
+    @GetMapping("/report")
+    public ResponseEntity<GuidanceReport> getReportByEmail(@RequestParam String email) {
+        try {
+            GuidanceReport report = recommendationService.getReportByEmail(email);
+            return ResponseEntity.ok(report);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

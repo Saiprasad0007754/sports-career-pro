@@ -57,6 +57,7 @@ function GuidanceForm({ onReportReady, user }) {
     try {
       const payload = {
         ...form,
+        email:    user?.email,
         age:      parseInt(form.age),
         weightKg: parseFloat(form.weightKg),
         heightCm: form.heightCm ? parseFloat(form.heightCm) : null,

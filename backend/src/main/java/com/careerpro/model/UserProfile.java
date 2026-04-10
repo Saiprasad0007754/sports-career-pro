@@ -22,6 +22,8 @@ public class UserProfile {
 
     private String name;
 
+    private String email;
+
     @Column(nullable = false)
     private String sportInterest;   // e.g. "Cricket"
 

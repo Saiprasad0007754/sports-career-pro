@@ -102,6 +102,7 @@ CREATE TABLE diet_plans (
 CREATE TABLE user_profiles (
     id              BIGINT AUTO_INCREMENT PRIMARY KEY,
     name            VARCHAR(150),
+    email           VARCHAR(150),
     sport_interest  VARCHAR(100) NOT NULL,
     age             INT NOT NULL,
     weight_kg       DECIMAL(5,2) NOT NULL,

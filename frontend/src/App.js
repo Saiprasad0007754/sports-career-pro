@@ -4,6 +4,7 @@ import AuthPage     from './components/auth/AuthPage';
 import GuidanceForm from './components/form/GuidanceForm';
 import Dashboard    from './components/dashboard/Dashboard';
 import Chatbot      from './components/chatbot/Chatbot';
+import { getGuidanceReport } from './services/api';
 import './styles/App.css';
 
 function App() {
@@ -11,9 +12,20 @@ function App() {
   const [page,      setPage]      = useState('form');
   const [report,    setReport]    = useState(null);
 
-  const handleLogin = (userData) => {
+  const handleLogin = async (userData) => {
     setUser(userData);
-    setPage('form');
+    try {
+      const existingReport = await getGuidanceReport(userData.email);
+      if (existingReport) {
+        setReport(existingReport);
+        setPage('dashboard');
+      } else {
+        setPage('form');
+      }
+    } catch (err) {
+      // If no report found or error
+      setPage('form');
+    }
   };
 
   const handleLogout = () => {
